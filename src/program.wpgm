@@ -1,0 +1,43 @@
+import wollok.game.*
+import auto.*
+import auto2.*
+
+program miPrimerWollokGame {
+	// límites del tablero de juego
+	game.width(14)
+	game.height(8)
+
+	// fondo del tablero de juego
+	game.boardGround("empedrado.jpg")
+
+	// agrego a objeto auto
+	game.addVisual(auto)
+	
+	keyboard.up() .onPressDo({
+		auto.moverArriba()
+	})
+	keyboard.down() .onPressDo({
+		auto.moverAbajo()
+	})
+	keyboard.right() .onPressDo({
+		auto.moverDerecha()
+	})
+	keyboard.left() .onPressDo({
+		auto.moverIzquierda()
+	})
+	
+	keyboard. shift() .onPressDo({
+		auto.cambiarColor()
+	})
+	
+	game.addVisual(autoMapa)
+	game.whenCollideDo(autoMapa, { elemento => 
+    game.say(autoMapa,autoMapa.meChocaste())
+  	})
+  	
+  	game.onTick(2000, "movimiento", { autoMapa.movete() })
+	
+	
+	// que arranque el juego!
+	game.start()
+}
