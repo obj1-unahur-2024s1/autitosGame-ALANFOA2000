@@ -32,7 +32,7 @@ program miPrimerWollokGame {
 	
 	game.addVisual(autoMapa)
 	game.whenCollideDo(autoMapa, { elemento => 
-    game.say(autoMapa,autoMapa.meChocaste())
+    	game.say(autoMapa,autoMapa.meChocaste())
   	})
   	
   	game.onTick(2000, "movimiento", { autoMapa.movete() })
